@@ -9,7 +9,7 @@ function setup() {
     bgEarth.load();
 
     for (let i = 0; i < 10; i++) {
-        debris_list.push(new Debris(random(width / 2, width), random(height)));
+        debris_list.push(new SpaceItem(random(width / 2, width), random(height)));
         spawnSpaceItem(true); // Initial spawn spread across the screen
     }
 }
