@@ -14,7 +14,24 @@ function draw() {
     ship.updatePosition();
     ship.show();
 
-    for (let i = 0; i < debrises.length; i++) {
-        debrises[i].show();
+    if (frameCount % 20 === 0) {
+        spawnDebris();
     }
+
+    for (let i = 0; i < debrises.length; i++) {
+        console.log(debrises.length);
+        debrises[i].updatePosition();
+        debrises[i].show();
+
+        if (debrises[i].x < -30) {
+            debrises.splice(i, 1);
+        }
+
+
+    }
+}
+
+function spawnDebris() {
+    let debris = new Debris((width + 50), random(height));
+    debrises.push(debris);
 }

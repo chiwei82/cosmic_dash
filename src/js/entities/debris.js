@@ -4,9 +4,9 @@ class Debris {
         this.y = y;
     }
 
-    // updatePosition() {
-
-    // }
+    updatePosition() {
+        this.x -= 2;
+    }
 
     show() {
         push();
@@ -18,4 +18,6 @@ class Debris {
         );
         pop();
     }
+
+
 }
