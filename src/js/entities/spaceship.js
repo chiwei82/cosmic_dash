@@ -32,7 +32,6 @@ class Spaceship {
             this.x - this.shipWidth / 2, this.y - this.shipHeight / 2,
             this.x - this.shipWidth / 2, this.y + this.shipHeight / 2
         )
-        this.weapon.show();
         pop();
     }
 
