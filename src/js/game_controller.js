@@ -25,7 +25,6 @@ class GameController {
         this.updateSpaceship();
         this.updateWeapon();
         this.updateSpaceItems();
-        this.checkCollisions();
     }
 
     handleKeyPressed() {
@@ -59,10 +58,25 @@ class GameController {
 
     updateSpaceItems() {
         this.handleSpawning();
-        for (let d of this.state.spaceItem) {
-            d.updatePosition();
+        for (let item of this.state.spaceItem) {
+            item.updatePosition();
+            this.checkCollisions(this.state.ship, item);
         }
         this.state.spaceItem = this.state.spaceItem.filter(d => d.x > -30 && d.isActive);
+    }
+
+    checkCollisions(ship, item) {
+        let itemBox = item.getBoundingBox();
+        let shipBox = ship.getBoundingBox();
+        if (shipBox.left < itemBox.right &&
+            shipBox.right > itemBox.left &&
+            shipBox.top < itemBox.bottom &&
+            shipBox.bottom > itemBox.top) {
+            let index = this.state.spaceItem.indexOf(item);
+            this.state.spaceItem.splice(index, 1);
+
+        }
+
     }
 
     // Helpers
@@ -79,19 +93,18 @@ class GameController {
     spawnSpaceItem(isInitialSetup) {
         let x = isInitialSetup ? random(width / 2, width) : width + 50;
         let y = random(height);
-        let size = random(15, 40);
         let type = Math.floor(random(2));
 
         let newSpaceItem;
         switch (type) {
             case 0:
-                newSpaceItem = new SpaceHazard(x, y, size);
+                newSpaceItem = new SpaceHazard(x, y);
                 break;
             case 1:
-                newSpaceItem = new SpaceJunk(x, y, size);
+                newSpaceItem = new SpaceJunk(x, y);
                 break;
             default:
-                newSpaceItem = new SpaceHazard(x, y, size);
+                newSpaceItem = new SpaceHazard(x, y);
         }
 
         this.state.spaceItem.push(newSpaceItem);

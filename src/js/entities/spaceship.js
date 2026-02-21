@@ -14,6 +14,18 @@ class Spaceship {
         this.ay = 0; // vertical acceleration (pixels per frame time squared)
         this.thrust = 0.1; // delta acceleration per frame when key held
         this.damping = 0.98;
+
+        // Behaviour
+        this.weapon = new LaserGun(this);
+    }
+
+    getBoundingBox() {
+        return {
+            left: this.x - this.shipWidth / 2,
+            right: this.x + this.shipWidth / 2,
+            top: this.y - this.shipHeight / 2,
+            bottom: this.y + this.shipHeight / 2,
+        };
     }
 
     show() {
