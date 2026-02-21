@@ -90,26 +90,26 @@ void main() {
 class Galaxy {
     constructor() {
         this.shaderProgram = null;
-      }
+    }
     
-      show() {
+    show() {
 
         if (!this.shaderProgram) {
-          this.shaderProgram = createShader(vertSrc, fragSrc);
+            this.shaderProgram = createShader(vertSrc, fragSrc);
         }
-    
+
         push();
-    
+
         shader(this.shaderProgram);
 
         // update uniforms
         this.shaderProgram.setUniform("uResolution", [width, height]);
         this.shaderProgram.setUniform("uFrame", frameCount);
         noStroke();
-    
+
         translate(0, 0, -1000);
         plane(width*3, height*3);
-    
+
         pop();
-      }
+    }
 }

@@ -66,6 +66,7 @@ class GameController {
     }
 
     // Helpers
+    checkCollisions(){return;}
 
     handleSpawning() {
         this.state.spawnTimer++;
