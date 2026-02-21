@@ -12,12 +12,8 @@ class GameView {
             p.show();
         }
 
-        for (let d of this.state.debris) {
+        for (let d of this.state.spaceItem) {
             d.show();
         }
     }
-
-
-    // drawHUD() { // Display HUD with score }
-    // drawGameOver()
 }
