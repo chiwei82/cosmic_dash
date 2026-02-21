@@ -20,7 +20,7 @@ class BackgroundEarth {
     show() {
         if (!this.ready) return;
     
-        ambientLight(100);
+        ambientLight(200);
         directionalLight(53, 130, 212, 1, 0.8, -0.2);
         specularMaterial(60);
         shininess(2);

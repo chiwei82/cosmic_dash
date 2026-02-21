@@ -9,6 +9,11 @@ class GameView {
     draw() {
         background(220);
 
+        this.background.show();
+        this.galaxy.show();
+        resetMatrix();
+        translate(-width / 2, -height / 2);
+        
         this.state.ship.show();
         this.state.weapon.show();
 
@@ -16,7 +21,6 @@ class GameView {
             d.show();
         }
 
-        this.background.show();
-        this.galaxy.show();
+       
     }
 }
