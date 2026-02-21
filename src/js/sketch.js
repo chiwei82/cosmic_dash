@@ -63,21 +63,18 @@ function spawnSpaceItem(isInitialSetup = false) {
     let size = random(15, 40);
 
     // Generates a random integer between 0 and 2
-    let type = Math.floor(random(3));
+    let type = Math.floor(random(2));
     let newDebris;
 
     switch (type) {
         case 0:
-            newDebris = new SpaceGarbage(x, y, size);
+            newDebris = new SpaceHazard(x, y, size);
             break;
         case 1:
-            newDebris = new Satellite(x, y, size);
-            break;
-        case 2:
-            newDebris = new Meteorite(x, y, size);
+            newDebris = new SpaceJunk(x, y, size);
             break;
         default:
-            newDebris = new SpaceGarbage(x, y,); // Safe fallback
+            newDebris = new SpaceHazard(x, y,); // Safe fallback
     }
 
     debris_list.push(newDebris);

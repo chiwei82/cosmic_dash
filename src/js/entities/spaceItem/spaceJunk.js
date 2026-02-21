@@ -1,7 +1,7 @@
-class Satellite extends SpaceItem {
+class SpaceJunk extends SpaceItem {
     constructor(x, y) {
         super(x, y, 2, 15); // Faster, harder to dodge
-        this.damage = 20;
+        this.isCollect = false;
     }
 
     show() {
@@ -11,8 +11,7 @@ class Satellite extends SpaceItem {
         pop();
     }
 
-    collide() {
-        this.isActive = false;
-        return this.damage;
+    Collect() {
+        this.isCollect = true;
     }
 }
