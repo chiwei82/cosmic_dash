@@ -6,6 +6,13 @@ class GameController {
     init() {
         // Initialize starting objects, like ship
         this.state.ship = new Spaceship(100, height / 2);
+
+        this.weapons = [
+            new JunkVacuum(this.state.ship),
+            new Laser(this.state.ship)
+        ]
+        this.currentWeaponIndex = 0;
+        this.state.weapon = this.weapons[this.currentWeaponIndex];
     }
 
     update() {
@@ -16,35 +23,42 @@ class GameController {
         if (this.state.gameOver) return;
 
         this.updateSpaceship();
-        this.updateProjectiles();
+        this.updateWeapon();
         this.updateSpaceItems();
         this.checkCollisions();
+    }
 
-        // this.state.ship.update(this.state.projectiles);
-        // // this.updateProjectiles();
-        // this.updateSpaceItem();
-        // this.handleSpawning();
+    handleKeyPressed() {
+        if (key === 's') {
+            this.handleWeaponSwitch();
+        }
     }
 
 
     // --- ENTITY UPDATES ---
-    // updateProjectiles() {
-    //     for (let p of this.state.projectiles) {
-    //         p.update();
-    //     }
-    //     this.state.projectiles = this.state.projectiles.filter(p => p.active);
-    // }
-
     updateSpaceship() {
         this.state.ship.updatePosition();
     }
 
-    updateProjectiles() {
-        // Alex to do this
+    updateWeapon() {
+        // If space bar is being pressed, update the position of weapon
+        // Draw is handled in game_view.js
+        if (keyIsPressed && key === ' ') {
+            this.state.weapon.updatePosition();
+        }
+        else {
+            this.state.weapon.clear();
+        }
+    }
+
+    handleWeaponSwitch() {
+        this.state.weapon.clear();
+        this.currentWeaponIndex = (this.currentWeaponIndex + 1) % this.weapons.length;
+        this.state.weapon = this.weapons[this.currentWeaponIndex];
     }
 
     updateSpaceItems() {
-        handleSpawning();
+        this.handleSpawning();
         for (let d of this.state.spaceItem) {
             d.updatePosition();
         }
@@ -82,17 +96,11 @@ class GameController {
         this.state.spaceItem.push(newSpaceItem);
     }
 
-
-    // --- INPUT ---
-    keyPressed(key) {
-        if (key === ' ') {
-            this.state.ship.weapon.fire(this.state.projectiles);
-        }
+    // --- COLLISIONS ---
+    checkCollisions() {
+        // ALLEN AND RAY
     }
 
-    keyReleased(key) {
-        if (key === ' ') {
-            this.state.ship.weapon.stopFiring(this.state.projectiles);
-        }
-    }
+
+
 }
