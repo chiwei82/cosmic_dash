@@ -14,7 +14,8 @@ function setup() {
 
 function draw() {
     background(220);
-    bgEarth.draw();
+    
+    bgEarth.show();
     resetMatrix();
     translate(-width / 2, -height / 2);
     ship.updatePosition();
