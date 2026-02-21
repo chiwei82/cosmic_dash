@@ -22,9 +22,9 @@ class Laser extends Weapon {
         this.y = 0;
     }
 
-    updatePosition() {
+    updatePosition(x1) {
         this.x0 = this.owner.x + this.owner.shipWidth / 2;
-        this.x1 = width;
+        this.x1 = x1;
         this.y = this.owner.y;
     }
 

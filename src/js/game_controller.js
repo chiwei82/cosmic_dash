@@ -42,7 +42,18 @@ class GameController {
     updateWeapon() {
         // If space bar is being pressed, update the position of weapon
         // Draw is handled in game_view.js
-        if (keyIsPressed && key === ' ') {
+        if (keyIsPressed && key === ' ' && this.currentWeaponIndex === 1) {
+            let x1 = width;
+            for (let item of this.state.spaceItem) {
+                if (this.checkCollisions(this.state.weapon, item)) {
+                    x1 = itemBox.left;
+                    break;
+                }
+            }
+            this.state.weapon.updatePosition(x1);
+
+        }
+        else if (keyIsPressed && key === ' ' && this.currentWeaponIndex === 0) {
             this.state.weapon.updatePosition();
         }
         else {
@@ -65,22 +76,19 @@ class GameController {
         this.state.spaceItem = this.state.spaceItem.filter(d => d.x > -30 && d.isActive);
     }
 
-    checkCollisions(ship, item) {
-        let itemBox = item.getBoundingBox();
-        let shipBox = ship.getBoundingBox();
-        if (shipBox.left < itemBox.right &&
-            shipBox.right > itemBox.left &&
-            shipBox.top < itemBox.bottom &&
-            shipBox.bottom > itemBox.top) {
-            let index = this.state.spaceItem.indexOf(item);
+    checkCollisions(object1, object2) {
+        let object1Box = object1.getBoundingBox();
+        let object2Box = object2.getBoundingBox();
+        if (object2Box.left < object1Box.right &&
+            object2Box.right > object1Box.left &&
+            object2Box.top < object1Box.bottom &&
+            object2Box.bottom > object1Box.top) {
+            let index = this.state.spaceItem.indexOf(object2);
             this.state.spaceItem.splice(index, 1);
-
         }
-
     }
 
-    // Helpers
-    checkCollisions(){return;}
+    // Helper
 
     handleSpawning() {
         this.state.spawnTimer++;
@@ -109,12 +117,4 @@ class GameController {
 
         this.state.spaceItem.push(newSpaceItem);
     }
-
-    // --- COLLISIONS ---
-    checkCollisions() {
-        // ALLEN AND RAY
-    }
-
-
-
 }
