@@ -14,10 +14,16 @@ class GameController {
         // Spawn new objects
         // Check collisions
         if (this.state.gameOver) return;
-        this.state.ship.update(this.state.projectiles);
-        // this.updateProjectiles();
-        this.updateDebris();
-        this.handleSpawning();
+
+        this.updateSpaceship();
+        this.updateProjectiles();
+        this.updateSpaceItems();
+        this.checkCollisions();
+
+        // this.state.ship.update(this.state.projectiles);
+        // // this.updateProjectiles();
+        // this.updateSpaceItem();
+        // this.handleSpawning();
     }
 
 
@@ -29,40 +35,51 @@ class GameController {
     //     this.state.projectiles = this.state.projectiles.filter(p => p.active);
     // }
 
-    updateDebris() {
-        for (let d of this.state.debris) {
+    updateSpaceship() {
+        this.state.ship.updatePosition();
+    }
+
+    updateProjectiles() {
+        // Alex to do this
+    }
+
+    updateSpaceItems() {
+        handleSpawning();
+        for (let d of this.state.spaceItem) {
             d.updatePosition();
         }
-        this.state.debris = this.state.debris.filter(d => d.x > -30 && d.isActive);
+        this.state.spaceItem = this.state.spaceItem.filter(d => d.x > -30 && d.isActive);
     }
+
+    // Helpers
 
     handleSpawning() {
         this.state.spawnTimer++;
         if (this.state.spawnTimer >= this.state.spawnInterval) {
             this.state.spawnTimer = 0;
-            this.spawnDebris(false);
+            this.spawnSpaceItem(false);
         }
     }
 
-    spawnDebris(isInitialSetup) {
+    spawnSpaceItem(isInitialSetup) {
         let x = isInitialSetup ? random(width / 2, width) : width + 50;
         let y = random(height);
         let size = random(15, 40);
         let type = Math.floor(random(2));
 
-        let newDebris;
+        let newSpaceItem;
         switch (type) {
             case 0:
-                newDebris = new SpaceHazard(x, y, size);
+                newSpaceItem = new SpaceHazard(x, y, size);
                 break;
             case 1:
-                newDebris = new SpaceJunk(x, y, size);
+                newSpaceItem = new SpaceJunk(x, y, size);
                 break;
             default:
-                newDebris = new SpaceHazard(x, y, size);
+                newSpaceItem = new SpaceHazard(x, y, size);
         }
 
-        this.state.debris.push(newDebris);
+        this.state.spaceItem.push(newSpaceItem);
     }
 
 

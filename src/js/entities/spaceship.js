@@ -19,11 +19,6 @@ class Spaceship {
         this.weapon = new LaserGun(this);
     }
 
-    update(projectile_list) {
-        this.updatePosition();
-        this.weapon.update(projectile_list);
-    }
-
     show() {
         push();
         fill(this.shipColor);
