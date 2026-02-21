@@ -2,8 +2,11 @@ let debris_list = [];
 let projectile_list = [];
 
 function setup() {
-    createCanvas(1200, 600);
+    createCanvas(1200, 600, WEBGL);
     ship = new Spaceship(100, height / 2);
+
+    bgEarth = new BackgroundEarth("assets/earth_texture.jpg", 600);
+    bgEarth.load();
 
     for (let i = 0; i < 10; i++) {
         debris_list.push(new Debris(random(width / 2, width), random(height)));
@@ -12,7 +15,10 @@ function setup() {
 
 function draw() {
     background(220);
-
+    bgEarth.show();
+    resetMatrix();
+    translate(-width / 2, -height / 2);
+  
     ship.update(projectile_list);
     ship.show();
 
@@ -30,9 +36,8 @@ function draw() {
         if (debris_list[i].x < -30) {
             debris_list.splice(i, 1);
         }
-
-
     }
+
 }
 
 function spawnDebris() {
