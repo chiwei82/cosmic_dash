@@ -5,9 +5,11 @@ class Weapon {
         this.owner = owner; // reference to the spaceship
     }
 
-    fire(projectile_list) {}
+    show() {}
 
-    stopFiring(projectile_list) {}
+    clear() {}
 
-    update(projectile_list) {}
+    updatePosition() {}
+
+    getBoundingBox() {}
 }

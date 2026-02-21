@@ -14,9 +14,7 @@ function draw() {
 }
 
 function keyPressed() {
-    controller.keyPressed(key);
+    controller.handleKeyPressed();
 }
 
-function keyReleased() {
-    controller.keyReleased(key);
-}
+
