@@ -70,7 +70,7 @@ void main() {
     // star sparse level
     float StarFieldThreshhold = 0.9;
 
-    float xRate = 0.2;
+    float xRate = -1.0;
     float yRate = -0.06;
 
     // star size

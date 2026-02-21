@@ -29,7 +29,7 @@ class BackgroundEarth {
         translate(0, 600, -800);
     
         // rotating speed
-        rotateY(frameCount * -0.0025);
+        rotateY(frameCount * -0.0015);
     
         noStroke();
         texture(this.tex);

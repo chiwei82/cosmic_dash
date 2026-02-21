@@ -1,7 +1,7 @@
 class GameView {
     constructor(state) {
         this.state = state;
-        this.background = new BackgroundEarth("assets/earth_texture.jpg", 600);
+        this.background = new BackgroundEarth("assets/earth_texture.jpg", 400);
         this.background.load();
         this.galaxy = new Galaxy();
     }
@@ -13,7 +13,7 @@ class GameView {
         this.galaxy.show();
         resetMatrix();
         translate(-width / 2, -height / 2);
-        
+
         this.state.ship.show();
         this.state.weapon.show();
 
