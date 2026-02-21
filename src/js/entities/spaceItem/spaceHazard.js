@@ -1,4 +1,4 @@
-class Meteorite extends SpaceItem {
+class SpaceHazard extends SpaceItem {
     constructor(x, y) {
         super(x, y, 2, 10); // Fastest
         this.health = 2; // Requires multiple hits to destroy
@@ -13,8 +13,13 @@ class Meteorite extends SpaceItem {
 
     takeDamage() {
         this.health -= 1;
+        colorVanish();
         if (this.health <= 0) {
             this.isActive = false;
         }
+    }
+
+    colorVanish(r, g, b) {
+        fill(r, g, b);
     }
 }
