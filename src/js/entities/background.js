@@ -5,8 +5,7 @@ class BackgroundEarth {
       this.tex = null;
       this.ready = false;
     }
-  
-    // p5.js 2.0：在 setup() 呼叫這個
+    
     load() {
       loadImage(
         this.texturePath,
@@ -18,22 +17,16 @@ class BackgroundEarth {
       );
     }
   
-    draw() {
+    show() {
       if (!this.ready) return;
   
-      // 光源（讓材質有立體感）
       ambientLight(80);
       directionalLight(255, 255, 255, 0.4, 0.2, -1);
-  
+
       push();
-  
-      // ✅ 把地球當「背景」：放在畫面更遠處 + 稍微往下
-      // WEBGL 座標原點在中心，y 往下是正
+      
       translate(0, 600, -800);
-  
-      // ✅ 持續旋轉
-      rotateY(frameCount * 0.01);
-  
+      rotateY(frameCount * -0.005);
       noStroke();
       texture(this.tex);
       sphere(this.radius, 48, 32);
