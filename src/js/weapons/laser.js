@@ -2,7 +2,7 @@ class Laser extends Weapon {
     constructor(owner) {
         super(owner);
         this.laserWidth = 3;
-        this.color = '#281E5D';
+        this.color = '#fcb448';
         this.x0 = 0;
         this.x1 = 0;
         this.y; // y0 and y1 are the same => y
