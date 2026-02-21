@@ -3,7 +3,7 @@ class GameState {
         // Add ship, debris, projectiles, score, gameOver, etc.
         this.ship = null;
         this.spaceItem = [];
-        this.weapon = null;
+        this.projectiles = [];
         this.score = 0;
         this.spawnTimer = 0;
         this.spawnInterval = 20;

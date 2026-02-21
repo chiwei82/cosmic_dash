@@ -16,4 +16,13 @@ class SpaceItem {
     show() {
         console.warn("show() should be implemented by the child class");
     }
+
+    getBoundingBox() {
+        return {
+            left: this.x - this.size / 2,
+            right: this.x + this.size / 2,
+            top: this.y - this.size / 2,
+            bottom: this.y + this.size / 2,
+        };
+    }
 }
