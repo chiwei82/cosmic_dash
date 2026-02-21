@@ -10,6 +10,7 @@ function setup() {
 
     for (let i = 0; i < 10; i++) {
         debris_list.push(new Debris(random(width / 2, width), random(height)));
+        spawnSpaceItem(true); // Initial spawn spread across the screen
     }
 }
 
@@ -18,7 +19,7 @@ function draw() {
     bgEarth.show();
     resetMatrix();
     translate(-width / 2, -height / 2);
-  
+
     ship.update(projectile_list);
     ship.show();
 
@@ -26,23 +27,22 @@ function draw() {
 
     // TODO: Refactor debris spawn logic somewhere else
     if (frameCount % 20 === 0) {
-        spawnDebris();
+        spawnSpaceItem(false);
     }
 
-    for (let i = 0; i < debris_list.length; i++) {
-        debris_list[i].updatePosition();
-        debris_list[i].show();
+    // Iterate backwards when removing items from an array to prevent index shifting bugs
+    for (let i = debris_list.length - 1; i >= 0; i--) {
+        let currentDebris = debris_list[i];
 
-        if (debris_list[i].x < -30) {
+        currentDebris.updatePosition();
+        currentDebris.show();
+
+        // Remove if it goes off-screen or if it was destroyed/collected (isActive is false)
+        if (currentDebris.x < -30 || !currentDebris.isActive) {
             debris_list.splice(i, 1);
         }
     }
 
-}
-
-function spawnDebris() {
-    let debris = new Debris((width + 50), random(height));
-    debris_list.push(debris);
 }
 
 function keyPressed() {
@@ -55,4 +55,30 @@ function keyReleased() {
     if (key === ' ') {
         ship.weapon.stopFiring(projectile_list);
     }
+}
+function spawnSpaceItem(isInitialSetup = false) {
+    let x = isInitialSetup ? random(width / 2, width) : width + 50;
+    let y = random(height);
+
+    let size = random(15, 40);
+
+    // Generates a random integer between 0 and 2
+    let type = Math.floor(random(3));
+    let newDebris;
+
+    switch (type) {
+        case 0:
+            newDebris = new SpaceGarbage(x, y, size);
+            break;
+        case 1:
+            newDebris = new Satellite(x, y, size);
+            break;
+        case 2:
+            newDebris = new Meteorite(x, y, size);
+            break;
+        default:
+            newDebris = new SpaceGarbage(x, y,); // Safe fallback
+    }
+
+    debris_list.push(newDebris);
 }
