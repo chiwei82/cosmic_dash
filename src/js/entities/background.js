@@ -5,7 +5,7 @@ class BackgroundEarth {
       this.tex = null;
       this.ready = false;
     }
-    
+  
     load() {
       loadImage(
         this.texturePath,
@@ -18,19 +18,23 @@ class BackgroundEarth {
     }
   
     show() {
-      if (!this.ready) return;
-  
-      ambientLight(80);
-      directionalLight(255, 255, 255, 0.4, 0.2, -1);
-
-      push();
-      
-      translate(0, 600, -800);
-      rotateY(frameCount * -0.005);
-      noStroke();
-      texture(this.tex);
-      sphere(this.radius, 48, 32);
-  
-      pop();
+        if (!this.ready) return;
+    
+        ambientLight(100);
+        directionalLight(53, 130, 212, 1, 0.8, -0.2);
+        specularMaterial(60);
+        shininess(2);
+    
+        push();
+        translate(0, 600, -800);
+    
+        // rotating speed
+        rotateY(frameCount * -0.0025);
+    
+        noStroke();
+        texture(this.tex);
+        sphere(this.radius, 48, 32);
+    
+        pop();
     }
   }
