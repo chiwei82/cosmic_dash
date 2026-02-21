@@ -35,3 +35,8 @@ function spawnDebris() {
     let debris = new Debris((width + 50), random(height));
     debrises.push(debris);
 }
+function keyPressed() {
+    if (key === ' ') {
+        ship.weapon.fire();
+    }
+}

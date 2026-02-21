@@ -1,15 +1,22 @@
 class Spaceship {
     constructor(x, y) {
-        this.shipWidth = 40;
-        this.shipHeight = 30;
+        // Aesthetics
         this.shipColor = color(255, 0, 0);
 
+        // Dimensions
+        this.shipWidth = 40;
+        this.shipHeight = 30;
+
+        // Location and Movement
         this.x = x;
         this.y = y;
         this.vy = 0; // vertical velocity (pixels per frame time)
         this.ay = 0; // vertical acceleration (pixels per frame time squared)
         this.thrust = 0.1; // delta acceleration per frame when key held
         this.damping = 0.98;
+
+        // Behaviour
+        this.weapon = new Laser(this);
     }
 
     handleInput() {
