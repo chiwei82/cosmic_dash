@@ -16,7 +16,24 @@ class Spaceship {
         this.damping = 0.98;
 
         // Behaviour
-        this.weapon = new Laser(this);
+        this.weapon = new LaserGun(this);
+    }
+
+    update(projectile_list) {
+        this.updatePosition();
+        this.weapon.update(projectile_list);
+    }
+
+    show() {
+        push();
+        fill(this.shipColor);
+        triangle(
+            this.x + this.shipWidth / 2, this.y,
+            this.x - this.shipWidth / 2, this.y - this.shipHeight / 2,
+            this.x - this.shipWidth / 2, this.y + this.shipHeight / 2
+        )
+        this.weapon.show();
+        pop();
     }
 
     handleInput() {
@@ -46,20 +63,9 @@ class Spaceship {
 
     updatePosition() {
         this.handleInput();
+        this.handleWalls(); // Bound this.SPACESHIP to screen
         this.vy += this.ay; // vf = vo + at, where t is frame duration and a is acceleration per frame
         this.vy *= this.damping;
         this.y += this.vy; // yf = y0 + vt, where t is frame duration
-        this.handleWalls(); // Bound this.SPACESHIP to screen
-    }
-
-    show() {
-        push();
-        fill(this.shipColor);
-        triangle(
-            this.x + this.shipWidth / 2, this.y,
-            this.x - this.shipWidth / 2, this.y - this.shipHeight / 2,
-            this.x - this.shipWidth / 2, this.y + this.shipHeight / 2
-        )
-        pop();
     }
 }

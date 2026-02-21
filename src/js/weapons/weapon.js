@@ -3,12 +3,11 @@
 class Weapon {
     constructor(owner) {
         this.owner = owner; // reference to the spaceship
-        this.projectiles = [];
     }
 
-    fire() {}
+    fire(projectile_list) {}
 
-    update() {}
+    stopFiring(projectile_list) {}
 
-    show() {}
+    update(projectile_list) {}
 }
