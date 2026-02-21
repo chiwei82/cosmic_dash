@@ -6,6 +6,7 @@ class GameController {
     init() {
         // Initialize starting objects, like ship
         this.state.ship = new Spaceship(100, height / 2);
+        this.state.ship.load();
 
         this.weapons = [
             new JunkVacuum(this.state.ship),

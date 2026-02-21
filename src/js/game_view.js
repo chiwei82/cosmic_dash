@@ -21,6 +21,5 @@ class GameView {
             d.show();
         }
 
-       
     }
 }

@@ -4,8 +4,8 @@ class Spaceship {
         this.shipColor = color(255, 0, 0);
 
         // Dimensions
-        this.shipWidth = 40;
-        this.shipHeight = 30;
+        this.shipWidth = 100;
+        this.shipHeight = 50;
 
         // Location and Movement
         this.x = x;
@@ -14,6 +14,19 @@ class Spaceship {
         this.ay = 0; // vertical acceleration (pixels per frame time squared)
         this.thrust = 0.1; // delta acceleration per frame when key held
         this.damping = 0.98;
+
+        // Graphics
+        this.vehicle = null;
+    }
+
+    load() {
+        loadImage(
+            "assets/vehicle.gif",
+            (img) => {
+                this.vehicle = img;
+            },
+            (err) => console.error("vehicle texture load fail:", err)
+        );
     }
 
     getBoundingBox() {
@@ -28,11 +41,22 @@ class Spaceship {
     show() {
         push();
         fill(this.shipColor);
-        triangle(
-            this.x + this.shipWidth / 2, this.y,
-            this.x - this.shipWidth / 2, this.y - this.shipHeight / 2,
-            this.x - this.shipWidth / 2, this.y + this.shipHeight / 2
-        )
+        if (this.vehicle == null) {
+            triangle(
+                this.x + this.shipWidth / 2, this.y,
+                this.x - this.shipWidth / 2, this.y - this.shipHeight / 2,
+                this.x - this.shipWidth / 2, this.y + this.shipHeight / 2
+            )    
+        } else {
+            image(
+                this.vehicle,
+                this.x - this.shipWidth / 2,
+                this.y - this.shipHeight / 2,
+                this.shipWidth,
+                this.shipHeight
+            );
+        }
+        
         pop();
     }
 
