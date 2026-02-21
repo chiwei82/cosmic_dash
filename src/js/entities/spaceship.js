@@ -62,9 +62,9 @@ class Spaceship {
 
     updatePosition() {
         this.handleInput();
-        this.handleWalls(); // Bound this.SPACESHIP to screen
         this.vy += this.ay; // vf = vo + at, where t is frame duration and a is acceleration per frame
         this.vy *= this.damping;
         this.y += this.vy; // yf = y0 + vt, where t is frame duration
+        this.handleWalls(); // Bound spaceship to screen
     }
 }
