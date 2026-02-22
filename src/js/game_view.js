@@ -19,7 +19,7 @@ class GameView {
         this.state.ship.show();
         this.state.weapon.show();
         this.ui.show(this.state.score);
-
+        this.ui.showHealth(this.state.ship.health);
         
         if (this.state.gameOver){
             this.ui.showGameOver();
