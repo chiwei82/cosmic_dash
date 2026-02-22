@@ -1,17 +1,23 @@
 class SpaceJunk extends SpaceItem {
     constructor(x, y) {
-        super(x, y, 2, 15); // Faster, harder to dodge
-        this.isCollect = false;
+        super(x, y, 1.5, 15);
+        this.health = 2; // Requires multiple hits to destroy
+        this.maxHealth = 2;
+        this.color = color(0, 100, 255);
     }
 
     show() {
         push();
-        fill(0, 100, 255);
+        fill(this.color);
         circle(this.x, this.y, this.size);
         pop();
     }
 
-    Collect() {
-        this.isCollect = true;
+    takeDamage() {
+        this.health -= 0.1;
+        this.speed += 0.2;
+        if (this.health <= 0) {
+            this.isActive = false;
+        }
     }
 }

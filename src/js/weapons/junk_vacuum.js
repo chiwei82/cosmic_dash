@@ -4,7 +4,7 @@ class JunkVacuum extends Weapon {
         this.color = '#1ff52d';
         this.strokeWidth = 5;
         this.height = 50;
-        this.width = 25;
+        this.width = 75;
         this.x0 = 0;
         this.x1 = 0;
         this.y0 = 0;

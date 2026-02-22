@@ -6,7 +6,7 @@ class GameState {
         this.projectiles = [];
         this.score = 0;
         this.spawnTimer = 0;
-        this.spawnInterval = 20;
+        this.spawnInterval = 50;
         this.gameOver = false;
     }
 }

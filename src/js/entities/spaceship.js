@@ -14,6 +14,7 @@ class Spaceship {
         this.ay = 0; // vertical acceleration (pixels per frame time squared)
         this.thrust = 0.1; // delta acceleration per frame when key held
         this.damping = 0.98;
+        this.health = 3;
 
         // Graphics
         this.vehicle = null;
