@@ -4,7 +4,7 @@ class SpaceItem {
         this.x = x;
         this.y = y;
         this.speed = speed;
-        this.size = size
+        this.size = size;
         this.isActive = true; // State flag to safely manage removal
         
     }

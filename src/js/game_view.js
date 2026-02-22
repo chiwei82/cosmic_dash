@@ -4,6 +4,8 @@ class GameView {
         this.background = new BackgroundEarth("assets/earth_texture.jpg", 400);
         this.background.load();
         this.galaxy = new Galaxy();
+        this.ui = new UI();
+        this.ui.load();
     }
 
     draw() {
@@ -16,6 +18,12 @@ class GameView {
 
         this.state.ship.show();
         this.state.weapon.show();
+        this.ui.show(this.state.score);
+
+        
+        if (this.state.gameOver){
+            this.ui.showGameOver();
+        }
 
         for (let d of this.state.spaceItem) {
             d.show();
