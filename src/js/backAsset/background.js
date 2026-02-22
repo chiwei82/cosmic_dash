@@ -10,10 +10,10 @@ class BackgroundEarth {
       // trash model
       this.trashModel = null;
       this.readyTrash = false;
-  
+
       // particles
       this.particles = [];
-      this.particleCount = floor(random(100, 200));
+      this.particleCount = floor(random(500, 1000));
       this.particleMinR = radius * 1.15;
       this.particleMaxR = radius * 2.0;
     }
@@ -77,7 +77,7 @@ class BackgroundEarth {
         directionalLight(53, 130, 212, 1, 0.8, -0.2);
     
         push();
-        translate(0, 600, -800);
+        translate(0, height/2 + this.radius, -800);
     
         // earth rotation
         rotateY(frameCount * -0.0015);

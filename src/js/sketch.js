@@ -1,5 +1,5 @@
 function setup() {
-    createCanvas(1200, 600, WEBGL);
+    createCanvas(windowWidth, windowHeight, WEBGL);
 
     state = new GameState();
     state.load();
@@ -7,6 +7,10 @@ function setup() {
     view = new GameView(state);
 
     controller.init();
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw() {

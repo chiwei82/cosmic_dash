@@ -2,6 +2,7 @@ class UI {
     constructor() {
       this.font = null;
       this.heart = null;
+      this.scoreTextSize = 36;
     }
   
     load() {
@@ -22,30 +23,31 @@ class UI {
     }
   
     show(state) {
-      push();
-  
-      textAlign(LEFT, TOP);
-      textSize(20);
-      fill(255);
-  
-      if (this.font) {
-        textFont(this.font);
-      }
-  
-      text(`Score: ${state}`, 16, 16);
-  
-      pop();
+        push();
+    
+        textAlign(LEFT, TOP);
+        textSize(this.scoreTextSize);
+        fill(255);
+    
+        if (this.font) {
+            textFont(this.font);
+        }
+    
+        text(`Score: ${state}`, 16, 16);
+    
+        pop();
     }
 
     showGameOver(){
+        this.dimScene();
         push();
         textAlign(CENTER, CENTER);
-        textSize(60);
+        textSize(this.scoreTextSize * 5);
         fill(255);
         if (this.font) {
             textFont(this.font);
         }
-        text(`GAME OVER`, 600, 300);
+        text(`GAME OVER`, width / 2, height / 2);
         pop();
     }
 
@@ -55,14 +57,14 @@ class UI {
         if (this.heart) {
           imageMode(CORNER);
     
-          const size = 32;      // 每個 heart 大小
+          const size = 52;      // 每個 heart 大小
           const spacing = 8;    // 間距
     
           for (let i = 0; i < health; i++) {
             image(
               this.heart,
               16 + i * (size + spacing),  // x 位置
-              40,                         // y 位置
+              this.scoreTextSize + 16,    // y 位置
               size,
               size
             );
@@ -73,6 +75,17 @@ class UI {
           text(`Health: ${health}`, 16, 40);
         }
     
+        pop();
+    }
+
+    // helper
+    dimScene(){
+        push();
+        resetMatrix();
+        noStroke();
+        fill(0, 180);
+        rectMode(CENTER);
+        rect(0, 0, width, height);
         pop();
     }
   }
