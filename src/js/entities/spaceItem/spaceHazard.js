@@ -1,20 +1,10 @@
 class SpaceHazard extends SpaceItem {
-    constructor(x, y) {
+    constructor(x, y, img) {
         super(x, y, 1.5, 30);
         this.health = 2; // Requires multiple hits to destroy
         this.maxHealth = 2;
         this.color = color(211, 31, 10);
-        this.img = null;
-    }
-
-    load() {
-        loadImage(
-          "assets/rock.gif",
-          (img) => {
-            this.img = img;
-          },
-          (err) => console.error("rock load fail:", err)
-        );
+        this.img = img;
     }
 
     show() {

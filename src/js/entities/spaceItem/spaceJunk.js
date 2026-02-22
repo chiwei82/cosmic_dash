@@ -1,20 +1,10 @@
 class SpaceJunk extends SpaceItem {
-    constructor(x, y) {
+    constructor(x, y, img) {
         super(x, y, 1.5, 60);
         this.health = 2; // Requires multiple hits to destroy
         this.maxHealth = 2;
         this.color = color(0, 100, 255);
-        this.img = null;
-    }
-
-    load() {
-        loadImage(
-          "assets/frag.png",
-          (img) => {
-            this.img = img;
-          },
-          (err) => console.error("frag.png load fail:", err)
-        );
+        this.img = img;
     }
 
     show() {

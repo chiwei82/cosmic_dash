@@ -11,3 +11,10 @@ body {
     min-height: 100vh;
     background: #f0f0f0;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #060840;
+    overflow: hidden;
+  }

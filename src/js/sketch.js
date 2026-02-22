@@ -2,6 +2,7 @@ function setup() {
     createCanvas(1200, 600, WEBGL);
 
     state = new GameState();
+    state.load();
     controller = new GameController(state);
     view = new GameView(state);
 

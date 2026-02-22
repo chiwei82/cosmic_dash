@@ -150,11 +150,9 @@ class GameController {
 
         let newSpaceItem;
         if (roll < 0.75) {
-            newSpaceItem = new SpaceHazard(x, y);
-            newSpaceItem.load();
+            newSpaceItem = new SpaceHazard(x, y, this.state.rockImg);
         } else {
-            newSpaceItem = new SpaceJunk(x, y);
-            newSpaceItem.load();
+            newSpaceItem = new SpaceJunk(x, y, this.state.fragImg);
         }
 
         this.state.spaceItem.push(newSpaceItem);
